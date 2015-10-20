@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D8F917D58441A62047CE191 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86770878D56C85D2DBB2CC2 /* Pods.framework */; };
 		EE7E9AC41BBA734900391478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7E9AC31BBA734900391478 /* AppDelegate.swift */; };
 		EE7E9AC61BBA734900391478 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7E9AC51BBA734900391478 /* ViewController.swift */; };
 		EE7E9AC91BBA734900391478 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE7E9AC71BBA734900391478 /* Main.storyboard */; };
@@ -27,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F64CB5A343BE14BC3BDAB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C21032666D87C74C2B1C891C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C86770878D56C85D2DBB2CC2 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE7E9ABE1BBA734900391478 /* Topcoder-FunSeries-SurveyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Topcoder-FunSeries-SurveyApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE7E9AC21BBA734900391478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE7E9AC31BBA734900391478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D8F917D58441A62047CE191 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +63,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18FD8C4D4ACFEF358C527C20 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F64CB5A343BE14BC3BDAB16 /* Pods.debug.xcconfig */,
+				C21032666D87C74C2B1C891C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C2C312BDEBB124E4EE77257A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C86770878D56C85D2DBB2CC2 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EE7E9AB51BBA734900391478 = {
 			isa = PBXGroup;
 			children = (
 				EE7E9AC01BBA734900391478 /* Topcoder-FunSeries-SurveyApp */,
 				EE7E9AD61BBA734900391478 /* Topcoder-FunSeries-SurveyAppTests */,
 				EE7E9ABF1BBA734900391478 /* Products */,
+				18FD8C4D4ACFEF358C527C20 /* Pods */,
+				C2C312BDEBB124E4EE77257A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,9 +146,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE7E9ADD1BBA734900391478 /* Build configuration list for PBXNativeTarget "Topcoder-FunSeries-SurveyApp" */;
 			buildPhases = (
+				4045930640BA201FC7AEB8B4 /* Check Pods Manifest.lock */,
 				EE7E9ABA1BBA734900391478 /* Sources */,
 				EE7E9ABB1BBA734900391478 /* Frameworks */,
 				EE7E9ABC1BBA734900391478 /* Resources */,
+				6DC5C58D560C3292AEC31E80 /* Embed Pods Frameworks */,
+				7AA4479789EAC4F674B395E4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -159,7 +186,9 @@
 		EE7E9AB61BBA734900391478 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = topcoder;
 				TargetAttributes = {
 					EE7E9ABD1BBA734900391478 = {
@@ -210,6 +239,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4045930640BA201FC7AEB8B4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6DC5C58D560C3292AEC31E80 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7AA4479789EAC4F674B395E4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EE7E9ABA1BBA734900391478 /* Sources */ = {
@@ -280,6 +357,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -342,20 +420,24 @@
 		};
 		EE7E9ADE1BBA734900391478 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F64CB5A343BE14BC3BDAB16 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Topcoder-FunSeries-SurveyApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.topcoder.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		EE7E9ADF1BBA734900391478 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C21032666D87C74C2B1C891C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Topcoder-FunSeries-SurveyApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.topcoder.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -374,6 +456,7 @@
 				);
 				INFOPLIST_FILE = "Topcoder-FunSeries-SurveyAppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.topcoder.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Topcoder-FunSeries-SurveyApp.app/Topcoder-FunSeries-SurveyApp";
 			};
@@ -389,6 +472,7 @@
 				);
 				INFOPLIST_FILE = "Topcoder-FunSeries-SurveyAppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.topcoder.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Topcoder-FunSeries-SurveyApp.app/Topcoder-FunSeries-SurveyApp";
 			};
@@ -413,6 +497,7 @@
 				EE7E9ADF1BBA734900391478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EE7E9AE01BBA734900391478 /* Build configuration list for PBXNativeTarget "Topcoder-FunSeries-SurveyAppTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +506,7 @@
 				EE7E9AE21BBA734900391478 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
