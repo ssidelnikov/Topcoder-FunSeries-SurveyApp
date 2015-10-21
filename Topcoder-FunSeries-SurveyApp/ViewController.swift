@@ -9,13 +9,16 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, UISearchResultsUpdating {
     
     
     var dataArray:NSMutableArray!
     var plistPath:String!
     var tableData=[String]()
+    var filteredTableData=[String]()
     var refreshControl:UIRefreshControl!
+    
+    var searchController: UISearchController!
     
     let dataUrl = "http://www.mocky.io/v2/560920cc9665b96e1e69bb46"
     
@@ -37,6 +40,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 //            }
 //        }
 //        print(tableData, terminator: "");
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.sizeToFit()
+        SurveyTable.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
         
         let tableViewController = UITableViewController()
         tableViewController.tableView = SurveyTable
@@ -90,18 +100,43 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     
     func tableView(SurveyTable: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        if (searchController.active) {
+            return filteredTableData.count
+        } else {
+            return tableData.count
+        }
     }
     
     func tableView(SurveyTable: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
             let cell = SurveyTable.dequeueReusableCellWithIdentifier("cell")!
-            cell.textLabel!.text = tableData[indexPath.row]
+            var text: String
+            if (searchController.active) {
+                text = filteredTableData[indexPath.row]
+            } else {
+                text = tableData[indexPath.row]
+            }
+            cell.textLabel!.text = text
             return cell
     }
     
+    // MARK: -Search
     
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContentForSearchText(searchText)
+            SurveyTable.reloadData()
+        }
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "Title") {
+        self.filteredTableData = self.tableData.filter({(string: String) -> Bool in
+            let categoryMatch = (scope == "Title")
+            let stringMatch = string.lowercaseString.rangeOfString(searchText.lowercaseString)
+            return categoryMatch && (stringMatch != nil)
+        })
+    }
     
 }
 
